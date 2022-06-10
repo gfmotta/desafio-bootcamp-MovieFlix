@@ -2,21 +2,19 @@ package com.devsuperior.movieflix.dtos;
 
 import java.io.Serializable;
 
-public class UserDTO implements Serializable {
+public class GenreDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String name;
-	private String email;
 	
-	public UserDTO() {
+	public GenreDTO() {
 		
 	}
-	
-	public UserDTO(Long id, String name, String email) {
+
+	public GenreDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
-		this.email = email;
 	}
 
 	public Long getId() {
@@ -33,13 +31,5 @@ public class UserDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 }

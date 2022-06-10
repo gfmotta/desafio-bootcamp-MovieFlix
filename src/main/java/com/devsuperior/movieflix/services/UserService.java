@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,12 +21,15 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository repository;
 	
+	@Autowired
+	private ModelMapper mapper;
+	
 	@Transactional(readOnly = true)
 	public UserDTO loggedUserProfile() {
 		try {
 			String username = SecurityContextHolder.getContext().getAuthentication().getName();
 			User user = repository.findByEmail(username);
-			return new UserDTO(user);
+			return mapper.map(user, UserDTO.class);
 		}
 		catch(Exception e) {
 			throw new UnauthorizedException("Autorização negada: Você não pode realizar essa operação");
